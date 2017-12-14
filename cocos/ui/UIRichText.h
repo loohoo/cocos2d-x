@@ -549,6 +549,8 @@ public:
      */
     void setOpenUrlHandler(const OpenUrlHandler& handleOpenUrl);
 
+	Size getTextSize();
+
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init() override;
 
@@ -580,6 +582,8 @@ protected:
 
     ValueMap _defaults;             /*!< default values */
     OpenUrlHandler _handleOpenUrl;  /*!< the callback for open URL */
+	int _textWidth; /*actual text width*/
+	int _textHeight; /*actual text height*/
 };
     
 }

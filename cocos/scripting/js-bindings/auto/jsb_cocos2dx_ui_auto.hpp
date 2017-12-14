@@ -827,6 +827,7 @@ bool js_cocos2dx_ui_RichText_color3BWithString(JSContext *cx, uint32_t argc, jsv
 bool js_cocos2dx_ui_RichText_create(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_ui_RichText_createWithXML(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_ui_RichText_RichText(JSContext *cx, uint32_t argc, jsval *vp);
+bool js_cocos2dx_ui_RichText_getTextSize(JSContext *cx, uint32_t argc, jsval *vp);
 
 extern JSClass  *jsb_cocos2d_ui_HBox_class;
 extern JSObject *jsb_cocos2d_ui_HBox_prototype;

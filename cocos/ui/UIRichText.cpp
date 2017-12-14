@@ -1780,7 +1780,9 @@ void RichText::formarRenderers()
             nextPosY -= maxY;
             rowWidthPairs.emplace_back(&element, nextPosX);
         }
-        this->setContentSize(Size(newContentSizeWidth, -nextPosY));
+		_textWidth = newContentSizeWidth;
+		_textHeight = -nextPosY;
+        this->setContentSize(Size(_textWidth, _textHeight));
         for ( auto& row : rowWidthPairs )
             doHorizontalAlignment(*row.first, row.second);
     }
@@ -1818,6 +1820,8 @@ void RichText::formarRenderers()
             
             doHorizontalAlignment(row, nextPosX);
         }
+		_textWidth = _customSize.width;
+		_textHeight = newContentSizeHeight;
     }
     
     _elementRenders.clear();
@@ -1919,4 +1923,8 @@ void RichText::ignoreContentAdaptWithSize(bool ignore)
 std::string RichText::getDescription() const
 {
     return "RichText";
+}
+
+Size RichText::getTextSize() {
+	return Size(_textWidth, _textHeight);
 }

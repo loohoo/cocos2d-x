@@ -16158,6 +16158,25 @@ bool js_cocos2dx_ui_RichText_createWithXML(JSContext *cx, uint32_t argc, jsval *
     return false;
 }
 
+bool js_cocos2dx_ui_RichText_getTextSize(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	JS::RootedObject obj(cx, args.thisv().toObjectOrNull());
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::RichText* cobj = (cocos2d::ui::RichText *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2(cobj, cx, false, "js_cocos2dx_ui_RichText_getTextSize : Invalid Native Object");
+	if (argc == 0) {
+		cocos2d::Size size = cobj->getTextSize();
+		JS::RootedValue jsret(cx);
+		jsret = ccsize_to_jsval(cx, size);
+		args.rval().set(jsret);
+		return true;
+	}
+
+	JS_ReportError(cx, "js_cocos2dx_ui_RichText_getTextSize : wrong number of arguments: %d, was expecting %d", argc, 0);
+	return false;
+}
+
 bool js_cocos2dx_ui_RichText_constructor(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
@@ -16252,6 +16271,7 @@ void js_register_cocos2dx_ui_RichText(JSContext *cx, JS::HandleObject global) {
         JS_FN("isAnchorTextOutlineEnabled", js_cocos2dx_ui_RichText_isAnchorTextOutlineEnabled, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("getFontColor3B", js_cocos2dx_ui_RichText_getFontColor3B, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("getWrapMode", js_cocos2dx_ui_RichText_getWrapMode, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getTextSize", js_cocos2dx_ui_RichText_getTextSize, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("setAnchorTextUnderline", js_cocos2dx_ui_RichText_setAnchorTextUnderline, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("color3BWithString", js_cocos2dx_ui_RichText_color3BWithString, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("ctor", js_cocos2dx_ui_RichText_ctor, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
