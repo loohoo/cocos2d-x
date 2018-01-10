@@ -10679,11 +10679,12 @@ bool js_cocos2dx_GLProgramState_setUniformFloatv(JSContext *cx, uint32_t argc, j
             ssize_t arg1 = 0;
             ok &= jsval_to_ssize(cx, args.get(1), &arg1);
             if (!ok) { ok = true; break; }
-            const float* arg2 = 0;
-            #pragma warning NO CONVERSION TO NATIVE FOR float*
-			ok = false;
-            if (!ok) { ok = true; break; }
-            cobj->setUniformFloatv(arg0, arg1, arg2);
+			float* arg2 = new float[arg1];
+			std::vector<float> vec_float;
+			ok &= jsval_to_std_vector_float(cx, args.get(2), &vec_float);
+			memcpy(arg2, &vec_float[0], vec_float.size() * sizeof(float));
+			if (!ok) { ok = true; break; }
+			cobj->setUniformFloatv(arg0, arg1, arg2);
             args.rval().setUndefined();
             return true;
         }
@@ -10697,9 +10698,10 @@ bool js_cocos2dx_GLProgramState_setUniformFloatv(JSContext *cx, uint32_t argc, j
             ssize_t arg1 = 0;
             ok &= jsval_to_ssize(cx, args.get(1), &arg1);
             if (!ok) { ok = true; break; }
-            const float* arg2 = 0;
-            #pragma warning NO CONVERSION TO NATIVE FOR float*
-			ok = false;
+            float* arg2 = new float[arg1];
+			std::vector<float> vec_float;
+			ok &= jsval_to_std_vector_float(cx, args.get(2), &vec_float);
+			memcpy(arg2, &vec_float[0], vec_float.size() * sizeof(float));
             if (!ok) { ok = true; break; }
             cobj->setUniformFloatv(arg0, arg1, arg2);
             args.rval().setUndefined();
