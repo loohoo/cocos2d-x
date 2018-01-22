@@ -292,6 +292,9 @@
     <Filter Include="external\md5">
       <UniqueIdentifier>{d3d38486-e13f-47b4-96b0-51a7c78e6d69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="external\xxtea">
+      <UniqueIdentifier>{6d9bedbd-4e18-44ec-93ab-ccc50f5339cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\physics\CCPhysicsBody.cpp">
@@ -1995,6 +1998,13 @@
     </ClCompile>
     <ClCompile Include="..\ui\UIEditBox\UIEditBoxImpl-common.cpp">
       <Filter>ui\UIWidgets\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\CCController.cpp" />
+    <ClCompile Include="..\base\CCController-linux-win32.cpp" />
+    <ClCompile Include="..\base\CCEventController.cpp" />
+    <ClCompile Include="..\base\CCEventListenerController.cpp" />
+    <ClCompile Include="..\..\external\xxtea\xxtea.cpp">
+      <Filter>external\xxtea</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3903,6 +3913,12 @@
     </ClInclude>
     <ClInclude Include="..\ui\UIEditBox\UIEditBoxImpl-common.h">
       <Filter>ui\UIWidgets\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\CCController.h" />
+    <ClInclude Include="..\base\CCEventController.h" />
+    <ClInclude Include="..\base\CCEventListenerController.h" />
+    <ClInclude Include="..\..\external\xxtea\xxtea.h">
+      <Filter>external\xxtea</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

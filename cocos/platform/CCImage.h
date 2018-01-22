@@ -159,6 +159,7 @@ public:
      @param    isToRGB        whether the image is saved as RGB format.
      */
     bool saveToFile(const std::string &filename, bool isToRGB = true);
+	
 
 protected:
 #if CC_USE_WIC

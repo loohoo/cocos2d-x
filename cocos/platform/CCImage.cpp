@@ -32,6 +32,8 @@ THE SOFTWARE.
 #include "base/CCData.h"
 #include "base/ccConfig.h" // CC_USE_JPEG, CC_USE_TIFF, CC_USE_WEBP
 
+#include "xxtea/xxtea.h"
+
 extern "C"
 {
     // To resolve link error when building 32bits with Xcode 6.
@@ -504,6 +506,25 @@ Image::~Image()
         CC_SAFE_FREE(_data);
 }
 
+void xxtea_decrypt_data(Data* data)
+{
+	const char* key = "FXACE5354";
+	const char* sign = "ZWS$;?";
+	unsigned char* dataBytes = data->getBytes();
+	ssize_t dataLen = data->getSize();
+	ssize_t signLen = strlen(sign);
+	ssize_t keyLen = strlen(key);
+
+	if (strncmp(sign, (const char*)dataBytes, signLen) != 0)
+	{
+		return;
+	}
+
+	xxtea_long retLen = 0;
+	unsigned char* retData = xxtea_decrypt(dataBytes + signLen, dataLen - signLen, (unsigned char*)key, keyLen, &retLen);
+	data->fastSet(retData, retLen);
+}
+
 bool Image::initWithImageFile(const std::string& path)
 {
     bool ret = false;
@@ -513,6 +534,7 @@ bool Image::initWithImageFile(const std::string& path)
 
     if (!data.isNull())
     {
+		xxtea_decrypt_data(&data);
         ret = initWithImageData(data.getBytes(), data.getSize());
     }
 
@@ -528,6 +550,7 @@ bool Image::initWithImageFileThreadSafe(const std::string& fullpath)
 
     if (!data.isNull())
     {
+		xxtea_decrypt_data(&data);
         ret = initWithImageData(data.getBytes(), data.getSize());
     }
 
@@ -2468,6 +2491,9 @@ void Image::premultipliedAlpha()
     _hasPremultipliedAlpha = true;
 #endif
 }
+
+
+
 
 
 void Image::setPVRImagesHavePremultipliedAlpha(bool haveAlphaPremultiplied)

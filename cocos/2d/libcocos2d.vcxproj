@@ -382,6 +382,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\openssl\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\..\external\unzip\ioapi.cpp" />
     <ClCompile Include="..\..\external\unzip\unzip.cpp" />
     <ClCompile Include="..\..\external\xxhash\xxhash.c" />
+    <ClCompile Include="..\..\external\xxtea\xxtea.cpp" />
     <ClCompile Include="..\3d\CCAABB.cpp" />
     <ClCompile Include="..\3d\CCAnimate3D.cpp" />
     <ClCompile Include="..\3d\CCAnimation3D.cpp" />
@@ -970,6 +971,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\openssl\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\..\external\unzip\ioapi.h" />
     <ClInclude Include="..\..\external\unzip\unzip.h" />
     <ClInclude Include="..\..\external\xxhash\xxhash.h" />
+    <ClInclude Include="..\..\external\xxtea\xxtea.h" />
     <ClInclude Include="..\3d\CCAABB.h" />
     <ClInclude Include="..\3d\CCAnimate3D.h" />
     <ClInclude Include="..\3d\CCAnimation3D.h" />
