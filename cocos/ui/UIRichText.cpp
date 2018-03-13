@@ -949,6 +949,7 @@ bool RichText::initWithXML(const std::string& origxml, const ValueMap& defaults,
     {
         setDefaults(defaults);
         setOpenUrlHandler(handleOpenUrl);
+		_richElements.clear();
 
         // solves to issues:
         //  - creates defaults values
@@ -983,7 +984,7 @@ void RichText::pushBackElement(RichElement *element)
     
 void RichText::removeElement(int index)
 {
-    _richElements.erase(index);
+	_richElements.erase(index);
     _formatTextDirty = true;
 }
     
