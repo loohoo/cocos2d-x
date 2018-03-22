@@ -2,6 +2,8 @@ package org.cocos2dx.lib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.webkit.WebChromeClient;
@@ -10,7 +12,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import java.lang.reflect.Method;
-import java.net.URI;
 import java.util.concurrent.CountDownLatch;
 
 class ShouldStartLoadingWorker implements Runnable {
@@ -83,16 +84,29 @@ public class Cocos2dxWebView extends WebView {
             Cocos2dxActivity activity = (Cocos2dxActivity)getContext();
 
             try {
-                URI uri = URI.create(urlString);
-                if (uri != null && uri.getScheme().equals(mJSScheme)) {
-                    activity.runOnGLThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Cocos2dxWebViewHelper._onJsCallback(mViewTag, urlString);
-                        }
-                    });
+
+                if (urlString != null) {
+
+                    if (urlString.startsWith(mJSScheme)) {
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+                        activity.startActivity(intent);
+
+
+                    } else {
+
+                        activity.runOnGLThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Cocos2dxWebViewHelper._onJsCallback(mViewTag, urlString);
+                            }
+                        });
+
+                    }
+
                     return true;
                 }
+
             } catch (Exception e) {
                 Log.d(TAG, "Failed to create URI from url");
             }
