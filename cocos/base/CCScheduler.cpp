@@ -319,7 +319,6 @@ void Scheduler::schedule(const ccSchedulerFunc& callback, void *target, float in
 
             if (timer && !timer->isExhausted() && key == timer->getKey())
             {
-                CCLOG("CCScheduler#schedule. Reiniting timer with interval %.4f, repeat %u, delay %.4f", interval, repeat, delay);
                 timer->setupTimerWithInterval(interval, repeat, delay);
                 return;
             }
