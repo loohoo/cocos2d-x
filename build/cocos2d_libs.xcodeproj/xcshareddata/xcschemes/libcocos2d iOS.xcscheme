@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A07A4C241783777C0073F6A7"
-               BuildableName = "libcocos2d iOS.a"
-               BlueprintName = "libcocos2d iOS"
+               BuildableName = "libcocos2d-ios.a"
+               BlueprintName = "libcocos2d-ios"
                ReferencedContainer = "container:cocos2d_libs.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A07A4C241783777C0073F6A7"
-            BuildableName = "libcocos2d iOS.a"
-            BlueprintName = "libcocos2d iOS"
+            BuildableName = "libcocos2d-ios.a"
+            BlueprintName = "libcocos2d-ios"
             ReferencedContainer = "container:cocos2d_libs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A07A4C241783777C0073F6A7"
-            BuildableName = "libcocos2d iOS.a"
-            BlueprintName = "libcocos2d iOS"
+            BuildableName = "libcocos2d-ios.a"
+            BlueprintName = "libcocos2d-ios"
             ReferencedContainer = "container:cocos2d_libs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -89,12 +89,16 @@ public class Cocos2dxWebView extends WebView {
 
                     if (urlString.startsWith(mJSScheme)) {
 
+                        // invoke other apps
+
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
                         activity.startActivity(intent);
 
+                        return true;
 
                     } else {
 
+                        // call back to js
                         activity.runOnGLThread(new Runnable() {
                             @Override
                             public void run() {
@@ -104,7 +108,6 @@ public class Cocos2dxWebView extends WebView {
 
                     }
 
-                    return true;
                 }
 
             } catch (Exception e) {
